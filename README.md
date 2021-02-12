@@ -46,7 +46,8 @@ docker run -d \
   -v /docker/haproxy/config:/config \
   -v /docker/haproxy/letsencrypt:/etc/letsencrypt \
   -v /docker/haproxy/certs.d:/usr/local/etc/haproxy/certs.d \
-  nmarus/haproxy-certbot
+  -e SUBJECT="/C=US/ST=somewhere/L=someplace/O=haproxy/OU=haproxy/CN=haproxy.selfsigned.invalid" \
+  sonkyokukou/haproxy-certbot
 ```
 
 It is important to note the mapping of the 3 volumes in the above command. This
