@@ -1,5 +1,5 @@
 # haproxy1.7.8 with certbot 
-FROM debian:jessie
+FROM debian:buster
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
