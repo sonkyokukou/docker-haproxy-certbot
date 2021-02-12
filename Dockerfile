@@ -53,6 +53,10 @@ RUN set -x \
 RUN apt-get update && apt-get install -y supervisor cron libnl-utils net-tools iptables && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# nl-qdisc-add command use "/usr/lib/x86_64-linux-gnu/libnl/cli/qdisc/plug.so",
+# but plgu.so is in "/usr/lib/x86_64-linux-gnu/libnl-3/cli/qdisc/plug.so"
+RUN ln -s /usr/lib/x86_64-linux-gnu/libnl-3 /usr/lib/x86_64-linux-gnu/libnl
+
 # Setup Supervisor
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
