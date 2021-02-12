@@ -182,7 +182,7 @@ frontend http-in
   bind *:80
   mode http
 
-  reqadd X-Forwarded-Proto:\ http
+  http-request add-header X-Forwarded-Proto http
 
   acl letsencrypt_http_acl path_beg /.well-known/acme-challenge/
   redirect scheme https if !letsencrypt_http_acl
@@ -194,7 +194,7 @@ frontend https_in
   bind *:443 ssl crt /usr/local/etc/haproxy/default.pem crt /usr/local/etc/haproxy/certs.d ciphers ECDHE-RSA-AES256-SHA:RC4-SHA:RC4:HIGH:!MD5:!aNULL:!EDH:!AESGCM
   mode http
 
-  reqadd X-Forwarded-Proto:\ https
+  http-request add-header X-Forwarded-Proto https
 
   default_backend my_http_backend
 
