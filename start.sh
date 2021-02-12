@@ -32,7 +32,7 @@ if [ ! -e ${DEFAULT_PEM} ]; then
 fi
 
 # Mark Syn Packets
-IP=$(echo `ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'`)
+IP=$(echo `ip a show dev eth0 2>/dev/null|awk '/inet / {print $2}'`)
 /sbin/iptables -t mangle -I OUTPUT -p tcp -s ${IP} --syn -j MARK --set-mark 1
 
 # Set up the queuing discipline
