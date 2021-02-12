@@ -33,7 +33,7 @@ RUN set -x \
 	&& rm haproxy.tar.gz \
 	\
 	&& makeOpts=' \
-		TARGET=linux2628 \
+		TARGET=linux-glibc \
 		USE_LUA=1 LUA_INC=/usr/include/lua5.3 \
 		USE_OPENSSL=1 \
 		USE_PCRE=1 PCREDIR= \
