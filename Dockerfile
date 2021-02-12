@@ -8,9 +8,9 @@ RUN apt-get update \
 		libssl1.1 \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV HAPROXY_MAJOR 1.7
-ENV HAPROXY_VERSION 1.7.8
-ENV HAPROXY_MD5 7e94653cc5a1dba006bbe43736f53595
+ENV HAPROXY_MAJOR 2.3
+ENV HAPROXY_VERSION 2.3.5
+ENV HAPROXY_MD5 5a9213e8b6d21318f5d0e9819e0e736b
 
 # see http://sources.debian.net/src/haproxy/jessie/debian/rules/ for some helpful navigation of the possible "make" arguments
 RUN set -x \
@@ -57,8 +57,8 @@ RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Install Certbot
-RUN echo 'deb http://ftp.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
-RUN apt-get update && apt-get install -y certbot -t jessie-backports && \
+# RUN echo 'deb http://ftp.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
+RUN apt-get update && apt-get install -y certbot && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Setup Certbot
