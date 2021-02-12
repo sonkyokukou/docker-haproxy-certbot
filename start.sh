@@ -6,7 +6,9 @@ HA_PROXY_DIR=/usr/local/etc/haproxy
 TEMP_DIR=/tmp
 
 PASSWORD=$(openssl rand -base64 32)
-SUBJ="/C=US/ST=somewhere/L=someplace/O=haproxy/OU=haproxy/CN=haproxy.selfsigned.invalid"
+if [ -z "$SUBJECT" ]; then 
+  SUBJECT="/C=US/ST=somewhere/L=someplace/O=haproxy/OU=haproxy/CN=haproxy.selfsigned.invalid"
+fi
 
 KEY=${TEMP_DIR}/haproxy_key.pem
 CERT=${TEMP_DIR}/haproxy_cert.pem
