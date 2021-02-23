@@ -7,7 +7,9 @@ DOMAINS=$(ls ${LE_DIR})
 # update certs for HA Proxy
 for DOMAIN in ${DOMAINS}
 do
- cat ${LE_DIR}/${DOMAIN}/fullchain.pem ${LE_DIR}/${DOMAIN}/privkey.pem > ${HA_PROXY_DIR}/certs.d/${DOMAIN}.pem
+ if [ "$DOMAIN" != "README" ]; then
+  cat ${LE_DIR}/${DOMAIN}/fullchain.pem ${LE_DIR}/${DOMAIN}/privkey.pem > ${HA_PROXY_DIR}/certs.d/${DOMAIN}.pem
+ fi
 done
 
 # restart haproxy
